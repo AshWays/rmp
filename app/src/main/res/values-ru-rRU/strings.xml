@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Bdzhilka</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="log_in">Войти</string>
+    <string name="create_account">Создать аккаунт</string>
+    <string name="enter_email">Введите email</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="sign_out">Выйти</string>
+    <string name="fill_field">Заполните пол</string>
+    <string name="user_not_found">Пользователь не наден</string>
+    <string name="server_not_responding">Сервер не отвечает</string>
+
+</resources>

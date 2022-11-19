@@ -1,9 +1,15 @@
 package com.example.emapp.view
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.service.notification.Condition
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import com.example.emapp.R
 import com.example.emapp.contract.ContractInterface.*
 import com.example.emapp.presenter.MainActivityPresenter
@@ -21,6 +27,7 @@ class MainActivity : AppCompatActivity(), View {
     }
 
     override fun initView() {
+
         EnterButton.setOnClickListener {
             presenter?.enterData(edEmail,edPassword)
         }
@@ -28,21 +35,41 @@ class MainActivity : AppCompatActivity(), View {
             startActivity(Intent( this, CreateAccount::class.java))
             finish()
         }
-    }
 
-    override fun errorMessege() {
-        val toastErLogin = Toast.makeText(this,"fill all", Toast.LENGTH_LONG)
-        toastErLogin.show()
-    }
+        edEmail.editText?.addTextChangedListener {
+            presenter?.validateEmail(edEmail)
+        }
 
-    override fun successMessege() {
-        val toastLogin = Toast.makeText(this, "You are loggined", Toast.LENGTH_LONG)
-        toastLogin.show()
+        edPassword.editText?.addTextChangedListener{
+            presenter?.validatePassword(edPassword)
+
+        }
+
+
+
+
     }
 
     override fun signInIntent() {
         startActivity(Intent( this, AccountUser::class.java))
         finish()
+    }
+
+    override fun toastWrong() {
+        Toast.makeText(this,getString(R.string.user_not_found),Toast.LENGTH_LONG).show()
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+
+        val view = this.currentFocus
+        when(event?.actionMasked){
+            MotionEvent.ACTION_DOWN ->{
+                val hideMe = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                hideMe.hideSoftInputFromWindow(view?.windowToken,0)
+            }
+        }
+
+        return true
     }
 
 }

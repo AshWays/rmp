@@ -1,7 +1,5 @@
 package com.example.emapp.model
 
-import User
-import android.widget.EditText
 import com.example.emapp.contract.CreateAccountInterface.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -16,8 +14,9 @@ class CreateAccountModel: Model {
     private val firebaseUser: FirebaseUser? = firebaseAuth.currentUser
 
 
-    override fun createDataBaseAccount(edCreateEmail: String, edCreatePassword: String){
-        firebaseAuth.createUserWithEmailAndPassword(edCreateEmail,edCreatePassword)
+    override fun getFirebaseAuth(): FirebaseAuth{
+
+        return firebaseAuth
 
     }
 }

@@ -20,41 +20,65 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:background="@drawable/edittext_background"
-                android:padding="10dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:drawablePadding="10dp"
                 android:textColor="#FFFFFF"
                 android:id="@+id/edEmail"
                 android:layout_width="220dp"
-                android:layout_height="55dp"
+                android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Email"
                 android:textColorHint="#FFFFFF"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                app:errorTextColor="#DD7300"
+                app:boxStrokeErrorColor="#DD7300"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edittext_background"
+                    android:ems="15"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="#FFFFFF" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
+
                 android:background="@drawable/edittext_background"
-                android:padding="10dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
                 android:layout_marginTop="20dp"
-                android:drawablePadding="10dp"
-                android:id="@+id/edPassword"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:ems="10"
-                android:hint="Password"
                 android:textColorHint="#FFFFFF"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="#A5A5A5"
                 android:textColor="#FFFFFF"
-                android:inputType="numberPassword" />
+                android:inputType="textPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edPassword"
+                app:errorTextColor="#DD7300"
+                app:boxStrokeErrorColor="#DD7300"
+
+                >
+
+               <com.google.android.material.textfield.TextInputEditText
+
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:inputType="textPassword"
+                   android:hint="@string/password"
+                   android:textColor="#FFFFFF"
+                   android:background="@drawable/edittext_background"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
 
         </TableRow>
 
@@ -68,7 +92,7 @@
                 android:id="@+id/EnterButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="@string/log_in" />
         </TableRow>
 
         <TableRow
@@ -81,7 +105,7 @@
                 android:id="@+id/CreateAccButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Create" />
+                android:text="@string/create_account" />
         </TableRow>
 
 

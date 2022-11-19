@@ -1,3 +1,5 @@
+package com.example.emapp.classes
+
 import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties

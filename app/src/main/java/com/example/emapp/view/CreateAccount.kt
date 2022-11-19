@@ -1,8 +1,12 @@
 package com.example.emapp.view
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import com.example.emapp.R
 import com.example.emapp.presenter.CreateAccountPresenter
 import com.example.emapp.contract.CreateAccountInterface.*
@@ -24,25 +28,41 @@ class CreateAccount : AppCompatActivity(), View {
         CreateButton.setOnClickListener {
             presenter?.createAccount(edCreateEmail,edCreatePassword,edConfirmPassword)
         }
-    }
 
-    override fun errorMessege() {
-        val toastErLogin = Toast.makeText(this,"fill all", Toast.LENGTH_LONG)
-        toastErLogin.show()
-    }
+        edCreateEmail.editText?.addTextChangedListener {
+            presenter?.validateEmail(edCreateEmail)
+        }
 
-    override fun successMessege() {
-        val toastLogin = Toast.makeText(this, "You are loggined", Toast.LENGTH_LONG)
-        toastLogin.show()
-    }
+        edCreatePassword.editText?.addTextChangedListener {
+            presenter?.validatePassword(edCreatePassword)
+        }
 
-    override fun notIdenticMessege() {
-        val toastNotIdentic = Toast.makeText(this, "Not identic passwords", Toast.LENGTH_LONG)
-        toastNotIdentic.show()
+
+        edConfirmPassword.editText?.addTextChangedListener {
+            edConfirmPassword.error = null
+        }
     }
 
     override fun signInIntent() {
         startActivity(Intent( this, AccountUser::class.java))
         finish()
     }
+
+    override fun toastWrong() {
+        Toast.makeText(this,getString(R.string.server_not_responding),Toast.LENGTH_LONG).show()
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+
+        val view = this.currentFocus
+        when(event?.actionMasked){
+            MotionEvent.ACTION_DOWN ->{
+                val hideMe = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                hideMe.hideSoftInputFromWindow(view?.windowToken,0)
+            }
+        }
+
+        return true
+    }
+
 }

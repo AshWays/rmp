@@ -1,19 +1,21 @@
 package com.example.emapp.contract
 
 import android.widget.EditText
+import com.google.android.material.textfield.TextInputLayout
 
 interface ContractInterface {
 
     interface View {
         fun initView()
-        fun successMessege()
-        fun errorMessege()
         fun signInIntent()
+        fun toastWrong()
 
     }
 
     interface Presenter {
-        fun enterData(edEmail: EditText, edPassword: EditText)
+        fun enterData(edEmail: TextInputLayout, edPassword: TextInputLayout)
+        fun validateEmail(edEmail: TextInputLayout)
+        fun validatePassword(edPassword: TextInputLayout)
     }
 
     interface Model {

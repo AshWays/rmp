@@ -1,6 +1,6 @@
 package com.example.emapp.model
 
-import User
+import com.example.emapp.classes.User
 import com.example.emapp.contract.ContractInterface.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
