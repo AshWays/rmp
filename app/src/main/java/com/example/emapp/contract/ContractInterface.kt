@@ -13,9 +13,9 @@ interface ContractInterface {
     }
 
     interface Presenter {
-        fun enterData(edEmail: TextInputLayout, edPassword: TextInputLayout)
-        fun validateEmail(edEmail: TextInputLayout)
-        fun validatePassword(edPassword: TextInputLayout)
+        fun enterData(edEmail: String, edPassword: String)
+        fun validateEmail(edEmail: String)
+        fun validatePassword(edPassword: String)
     }
 
     interface Model {

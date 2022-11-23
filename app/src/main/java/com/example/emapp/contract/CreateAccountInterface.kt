@@ -14,9 +14,9 @@ interface CreateAccountInterface {
     }
 
     interface Presenter {
-        fun createAccount(edCreateEmail: TextInputLayout, edCreatePassword: TextInputLayout,edConfirmPassword: TextInputLayout)
-        fun validateEmail(edEmail: TextInputLayout)
-        fun validatePassword(edPassword: TextInputLayout)
+        fun createAccount(edCreateEmail: String, edCreatePassword: String,edConfirmPassword: String)
+        fun validateEmail(edEmail: String)
+        fun validatePassword(edPassword: String)
     }
 
     interface Model {

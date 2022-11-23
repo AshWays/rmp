@@ -26,15 +26,17 @@ class CreateAccount : AppCompatActivity(), View {
 
     override fun initView() {
         CreateButton.setOnClickListener {
-            presenter?.createAccount(edCreateEmail,edCreatePassword,edConfirmPassword)
+            presenter?.createAccount(edCreateEmail.editText?.text.toString(),
+                edCreatePassword.editText?.text.toString(),
+                edConfirmPassword.editText?.text.toString())
         }
 
         edCreateEmail.editText?.addTextChangedListener {
-            presenter?.validateEmail(edCreateEmail)
+            presenter?.validateEmail(edCreateEmail.editText?.text.toString())
         }
 
         edCreatePassword.editText?.addTextChangedListener {
-            presenter?.validatePassword(edCreatePassword)
+            presenter?.validatePassword(edCreatePassword.editText?.text.toString())
         }
 
 

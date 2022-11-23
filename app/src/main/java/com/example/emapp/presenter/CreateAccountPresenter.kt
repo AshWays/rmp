@@ -1,18 +1,13 @@
 package com.example.emapp.presenter
 
-import android.content.Intent
-import android.widget.EditText
-import androidx.core.content.ContextCompat.startActivity
-import com.example.emapp.classes.EmailValidator
-import com.example.emapp.classes.PasswordValidator
+import com.example.emapp.R
+import com.example.emapp.classes.EmailValidatorCreateAccount
+import com.example.emapp.classes.PasswordValidatorCreateAccount
 import com.example.emapp.model.CreateAccountModel
 import com.example.emapp.contract.CreateAccountInterface.*
 import com.example.emapp.view.CreateAccount
-import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_create_account.*
 
 class CreateAccountPresenter(_view: CreateAccount): Presenter {
 
@@ -24,15 +19,16 @@ class CreateAccountPresenter(_view: CreateAccount): Presenter {
         view.initView()
     }
 
-    override fun createAccount(edCreateEmail: TextInputLayout, edCreatePassword: TextInputLayout, edConfirmPassword: TextInputLayout){
+    override fun createAccount(edCreateEmail: String, edCreatePassword: String, edConfirmPassword: String){
 
-        val emailValidator = EmailValidator()
-        val passwordValidator = PasswordValidator()
+        val emailValidator = EmailValidatorCreateAccount(view)
+        val passwordValidator = PasswordValidatorCreateAccount(view)
         val firebaseAuth: FirebaseAuth = model.getFirebaseAuth()
 
-        if((emailValidator.ValidateEmail(edCreateEmail)) and (passwordValidator.ValidatePassword(edCreatePassword))) {
-            if ((edConfirmPassword.editText?.text.toString()) == (edCreatePassword.editText?.text.toString())) {
-                firebaseAuth.createUserWithEmailAndPassword(edCreateEmail.editText?.text.toString(),edCreatePassword.editText?.text.toString())
+        if((emailValidator.ValidateEmail(edCreateEmail))
+            and (passwordValidator.ValidatePassword(edCreatePassword))) {
+            if ((edConfirmPassword) == (edCreatePassword)) {
+                firebaseAuth.createUserWithEmailAndPassword(edCreateEmail,edCreatePassword)
                     .addOnCompleteListener { task ->
                         if(task.isSuccessful){
                             view.signInIntent()
@@ -42,33 +38,33 @@ class CreateAccountPresenter(_view: CreateAccount): Presenter {
                         }
                     }
             }
-            else edConfirmPassword.error = "Not identyc passwords"
+            else view.edConfirmPassword.error = view.getString(R.string.not_identic_passwords)
         }
         else {
             if(!(emailValidator.ValidateEmail(edCreateEmail))){
-                edCreateEmail.error = emailValidator.GetError()
+                view.edCreateEmail.error = emailValidator.GetError()
             }
             if(!(passwordValidator.ValidatePassword(edCreatePassword))){
-                edCreatePassword.error = passwordValidator.GetError()
+                view.edCreatePassword.error = passwordValidator.GetError()
             }
         }
     }
 
-    override fun validateEmail(edCreateEmail: TextInputLayout) {
+    override fun validateEmail(edCreateEmail: String) {
 
-        val emailValidator = EmailValidator()
-        edCreateEmail.error = null
+        val emailValidator = EmailValidatorCreateAccount(view)
+        view.edCreateEmail.error = null
         if(!(emailValidator.ValidateEmail(edCreateEmail))){
-            edCreateEmail.error = emailValidator.GetError()
+            view.edCreateEmail.error = emailValidator.GetError()
         }
 
     }
 
-    override fun validatePassword(edCreatePassword: TextInputLayout) {
-        val passwordValidator = PasswordValidator()
-        edCreatePassword.error = null
+    override fun validatePassword(edCreatePassword: String) {
+        val passwordValidator = PasswordValidatorCreateAccount(view)
+        view.edCreatePassword.error = null
         if(!(passwordValidator.ValidatePassword(edCreatePassword))){
-            edCreatePassword.error = passwordValidator.GetError()
+            view.edCreatePassword.error = passwordValidator.GetError()
         }
 
 

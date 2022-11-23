@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(), View {
     override fun initView() {
 
         EnterButton.setOnClickListener {
-            presenter?.enterData(edEmail,edPassword)
+            presenter?.enterData(edEmail.editText?.text.toString(),edPassword.editText?.text.toString())
         }
         CreateAccButton.setOnClickListener{
             startActivity(Intent( this, CreateAccount::class.java))
@@ -37,11 +37,11 @@ class MainActivity : AppCompatActivity(), View {
         }
 
         edEmail.editText?.addTextChangedListener {
-            presenter?.validateEmail(edEmail)
+            presenter?.validateEmail(edEmail.editText?.text.toString())
         }
 
         edPassword.editText?.addTextChangedListener{
-            presenter?.validatePassword(edPassword)
+            presenter?.validatePassword(edPassword.editText?.text.toString())
 
         }
 

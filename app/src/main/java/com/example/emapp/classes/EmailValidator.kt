@@ -1,27 +1,56 @@
 package com.example.emapp.classes
 
 
+import com.example.emapp.R
+import com.example.emapp.view.CreateAccount
+import com.example.emapp.view.MainActivity
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.database.IgnoreExtraProperties
-import com.example.emapp.R
+
 
 
 @IgnoreExtraProperties
-class EmailValidator {
+class EmailValidatorMainActivity(view: MainActivity) {
 
     private var messege: String = ""
+    private val view = view
 
 
-
-    public fun ValidateEmail(edEmail: TextInputLayout):Boolean{
-        if(edEmail.editText?.text.toString().isEmpty()){
-            messege = "Fill field"
+    public fun ValidateEmail(edEmail: String):Boolean{
+        if(edEmail.isEmpty()){
+            messege = view.getString(R.string.fill_field)
             return false
         }
-        if((!(edEmail.editText?.text.toString().contains("@gmail.com")))&&
-            (!(edEmail.editText?.text.toString().contains("@mail.ru")))&&
-            (!(edEmail.editText?.text.toString().contains("@yandex.ru")))){
-            messege = "It's not email adress\nAcceptable Emails:@gmail.com, @mail.ru, @yandex.ru"
+        if((!(edEmail.contains("@gmail.com")))&&
+            (!(edEmail.contains("@mail.ru")))&&
+            (!(edEmail.contains("@yandex.ru")))){
+            messege = view.getString(R.string.invalid_email)
+            return false
+        }
+        return true
+    }
+
+    public fun GetError():String{
+        return messege
+    }
+
+}
+
+class EmailValidatorCreateAccount(view: CreateAccount) {
+
+    private var messege: String = ""
+    private val view = view
+
+
+    public fun ValidateEmail(edEmail: String):Boolean{
+        if(edEmail.isEmpty()){
+            messege = view.getString(R.string.fill_field)
+            return false
+        }
+        if((!(edEmail.contains("@gmail.com")))&&
+            (!(edEmail.contains("@mail.ru")))&&
+            (!(edEmail.contains("@yandex.ru")))){
+            messege = view.getString(R.string.invalid_email)
             return false
         }
         return true

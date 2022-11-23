@@ -59,7 +59,7 @@
                 app:passwordToggleTint="#A5A5A5"
                 android:textColor="#FFFFFF"
                 android:inputType="textPassword"
-                android:layout_width="wrap_content"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/edPassword"
                 app:errorTextColor="#DD7300"

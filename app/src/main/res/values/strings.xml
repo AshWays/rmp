@@ -12,6 +12,9 @@
     <string name="fill_field">Fill field</string>
     <string name="user_not_found">User not found</string>
     <string name="server_not_responding">The server is not responding</string>
+    <string name="invalid_email">It\'s not email adress\nAcceptable Emails:@gmail.com, @mail.ru, @yandex.ru</string>
+    <string name="short_password">Too short\nMust be from 4 to 12 symbols</string>
+    <string name="not_identic_passwords">Not identic passvords</string>
 
 
 </resources>

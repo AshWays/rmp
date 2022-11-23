@@ -1,13 +1,15 @@
 package com.example.emapp.presenter
 
-import com.example.emapp.classes.EmailValidator
-import com.example.emapp.classes.PasswordValidator
+
+import com.example.emapp.classes.EmailValidatorMainActivity
+import com.example.emapp.classes.PasswordValidatorMainActivity
 import com.example.emapp.model.MainActivityModel
 import com.example.emapp.contract.ContractInterface.*
 import com.example.emapp.view.MainActivity
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivityPresenter(_view: MainActivity): Presenter {
 
@@ -20,13 +22,14 @@ class MainActivityPresenter(_view: MainActivity): Presenter {
         view.initView()
     }
 
-    override fun enterData(edEmail: TextInputLayout, edPassword: TextInputLayout){
+    override fun enterData(edEmail: String, edPassword: String){
 
-        val emailValidator = EmailValidator()
-        val passwordValidator = PasswordValidator()
+        val emailValidator = EmailValidatorMainActivity(view)
+        val passwordValidator = PasswordValidatorMainActivity(view)
 
-        if((emailValidator.ValidateEmail(edEmail)) and (passwordValidator.ValidatePassword(edPassword))){
-            firebaseAuth.signInWithEmailAndPassword(edEmail.editText?.text.toString(), edPassword.editText?.text.toString())
+        if((emailValidator.ValidateEmail(edEmail))
+            and (passwordValidator.ValidatePassword(edPassword))){
+            firebaseAuth.signInWithEmailAndPassword(edEmail, edPassword)
                 .addOnCompleteListener { signIn ->
                     if (signIn.isSuccessful) {
                         view.signInIntent()
@@ -38,32 +41,32 @@ class MainActivityPresenter(_view: MainActivity): Presenter {
         }
         else{
             if(!(emailValidator.ValidateEmail(edEmail))){
-                edEmail.error = emailValidator.GetError()
+                view.edEmail.error = emailValidator.GetError()
             }
             if(!(passwordValidator.ValidatePassword(edPassword))){
-                edPassword.error = passwordValidator.GetError()
+                view.edPassword.error = passwordValidator.GetError()
             }
         }
 
 
     }
 
-    override fun validateEmail(edEmail: TextInputLayout) {
+    override fun validateEmail(edEmail: String) {
 
-        val emailValidator = EmailValidator()
-        edEmail.error = null
+        val emailValidator = EmailValidatorMainActivity(view)
+        view.edEmail.error = null
         if(!(emailValidator.ValidateEmail(edEmail))){
-            edEmail.error = emailValidator.GetError()
+            view.edEmail.error = emailValidator.GetError()
         }
 
     }
 
-    override fun validatePassword(edPassword: TextInputLayout) {
+    override fun validatePassword(edPassword: String) {
 
-        val passwordValidator = PasswordValidator()
-        edPassword.error = null
+        val passwordValidator = PasswordValidatorMainActivity(view)
+        view.edPassword.error = null
         if(!(passwordValidator.ValidatePassword(edPassword))){
-            edPassword.error = passwordValidator.GetError()
+            view.edPassword.error = passwordValidator.GetError()
         }
 
     }
