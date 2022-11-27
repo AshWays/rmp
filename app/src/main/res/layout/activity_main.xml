@@ -10,7 +10,7 @@
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,18 +20,31 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginVertical="20dp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                app:srcCompat="@drawable/bdzhilka" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
             <com.google.android.material.textfield.TextInputLayout
-                android:background="@drawable/edittext_background"
-                android:textColor="#FFFFFF"
                 android:id="@+id/edEmail"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/edittext_background"
                 android:ems="10"
-                android:textColorHint="#FFFFFF"
                 android:inputType="textEmailAddress"
-                app:errorTextColor="#DD7300"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 app:boxStrokeErrorColor="#DD7300"
-                >
+                app:errorTextColor="#DD7300">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -52,32 +65,31 @@
 
             <com.google.android.material.textfield.TextInputLayout
 
-                android:background="@drawable/edittext_background"
-                android:layout_marginTop="20dp"
-                android:textColorHint="#FFFFFF"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTint="#A5A5A5"
-                android:textColor="#FFFFFF"
-                android:inputType="textPassword"
+                android:id="@+id/edPassword"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/edPassword"
-                app:errorTextColor="#DD7300"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edittext_background"
+                android:inputType="textPassword"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 app:boxStrokeErrorColor="#DD7300"
+                app:errorTextColor="#DD7300"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="#A5A5A5"
 
                 >
 
-               <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
 
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:inputType="textPassword"
-                   android:hint="@string/password"
-                   android:textColor="#FFFFFF"
-                   android:background="@drawable/edittext_background"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edittext_background"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:textColor="#FFFFFF" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
 
         </TableRow>
@@ -87,11 +99,11 @@
             android:layout_height="match_parent">
 
             <Button
-                android:background="@drawable/button_background"
-                android:layout_marginTop="20dp"
                 android:id="@+id/EnterButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_background"
                 android:text="@string/log_in" />
         </TableRow>
 
@@ -100,11 +112,11 @@
             android:layout_height="match_parent">
 
             <Button
-                android:background="@drawable/button_background"
-                android:layout_marginTop="20dp"
                 android:id="@+id/CreateAccButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_background"
                 android:text="@string/create_account" />
         </TableRow>
 
