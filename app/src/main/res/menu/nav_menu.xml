@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item
+        android:id="@+id/ic_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="Settings" />
+
+    <item
+        android:title="News"
+        android:icon="@drawable/ic_news"
+        android:id="@+id/ic_news"
+        />
+
+    <item
+        android:title="Map"
+        android:icon="@drawable/ic_map"
+        android:id="@+id/ic_map"
+        />
+
+    <item
+        android:title="Friends"
+        android:icon="@drawable/ic_friends"
+        android:id="@+id/ic_friends"
+        />
+
+    <item
+        android:title="Account"
+        android:icon="@drawable/ic_user"
+        android:id="@+id/ic_user"
+        />
+
+</menu>
