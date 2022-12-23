@@ -11,10 +11,6 @@ class AccountUserPresenter(_view: AccountUser): Presenter {
     private var model: Model = AccountUserModel()
 
 
-    init {
-        view.initView()
-    }
-
     override fun signOut() {
 
     }

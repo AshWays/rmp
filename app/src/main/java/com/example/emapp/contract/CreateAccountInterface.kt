@@ -7,7 +7,6 @@ import com.google.firebase.auth.FirebaseAuth
 interface CreateAccountInterface {
 
     interface View {
-        fun initView()
         fun signInIntent()
         fun toastWrong()
 

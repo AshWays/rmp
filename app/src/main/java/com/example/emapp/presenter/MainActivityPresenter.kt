@@ -1,14 +1,16 @@
 package com.example.emapp.presenter
 
 
-import com.example.emapp.classes.EmailValidatorMainActivity
-import com.example.emapp.classes.PasswordValidatorMainActivity
+import com.example.emapp.R
+import com.example.emapp.classes.EmailValidator
+import com.example.emapp.classes.PasswordValidator
 import com.example.emapp.model.MainActivityModel
 import com.example.emapp.contract.ContractInterface.*
 import com.example.emapp.view.MainActivity
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.activity_create_account.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivityPresenter(_view: MainActivity): Presenter {
@@ -18,14 +20,21 @@ class MainActivityPresenter(_view: MainActivity): Presenter {
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val firebaseUser: FirebaseUser? = firebaseAuth.currentUser
 
-    init {
-        view.initView()
-    }
 
     override fun enterData(edEmail: String, edPassword: String){
 
-        val emailValidator = EmailValidatorMainActivity(view)
-        val passwordValidator = PasswordValidatorMainActivity(view)
+        val emailValidator = EmailValidator()
+        val passwordValidator = PasswordValidator()
+
+        if(edEmail.isEmpty()) {
+            view.edEmail.error = view.getString(R.string.fill_field)
+            return
+        }
+
+        if(edPassword.isEmpty()) {
+            view.edPassword.error = view.getString(R.string.fill_field)
+            return
+        }
 
         if((emailValidator.ValidateEmail(edEmail))
             and (passwordValidator.ValidatePassword(edPassword))){
@@ -41,10 +50,10 @@ class MainActivityPresenter(_view: MainActivity): Presenter {
         }
         else{
             if(!(emailValidator.ValidateEmail(edEmail))){
-                view.edEmail.error = emailValidator.GetError()
+                view.edEmail.error = view.getString(R.string.invalid_email)
             }
             if(!(passwordValidator.ValidatePassword(edPassword))){
-                view.edPassword.error = passwordValidator.GetError()
+                view.edPassword.error = view.getString(R.string.short_password)
             }
         }
 
@@ -53,20 +62,30 @@ class MainActivityPresenter(_view: MainActivity): Presenter {
 
     override fun validateEmail(edEmail: String) {
 
-        val emailValidator = EmailValidatorMainActivity(view)
+        if(edEmail.isEmpty()) {
+            view.edEmail.error = view.getString(R.string.fill_field)
+            return
+        }
+
+        val emailValidator = EmailValidator()
         view.edEmail.error = null
         if(!(emailValidator.ValidateEmail(edEmail))){
-            view.edEmail.error = emailValidator.GetError()
+            view.edEmail.error = view.getString(R.string.invalid_email)
         }
 
     }
 
     override fun validatePassword(edPassword: String) {
 
-        val passwordValidator = PasswordValidatorMainActivity(view)
+        if(edPassword.isEmpty()) {
+            view.edPassword.error = view.getString(R.string.fill_field)
+            return
+        }
+
+        val passwordValidator = PasswordValidator()
         view.edPassword.error = null
         if(!(passwordValidator.ValidatePassword(edPassword))){
-            view.edPassword.error = passwordValidator.GetError()
+            view.edPassword.error = view.getString(R.string.short_password)
         }
 
     }

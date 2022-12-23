@@ -21,10 +21,7 @@ class CreateAccount : AppCompatActivity(), View {
         setContentView(R.layout.activity_create_account)
 
         presenter = CreateAccountPresenter(this)
-    }
 
-
-    override fun initView() {
         CreateButton.setOnClickListener {
             presenter?.createAccount(edCreateEmail.editText?.text.toString(),
                 edCreatePassword.editText?.text.toString(),
@@ -44,6 +41,8 @@ class CreateAccount : AppCompatActivity(), View {
             edConfirmPassword.error = null
         }
     }
+
+
 
     override fun signInIntent() {
         startActivity(Intent( this, AccountUser::class.java))

@@ -1,8 +1,8 @@
 package com.example.emapp.presenter
 
 import com.example.emapp.R
-import com.example.emapp.classes.EmailValidatorCreateAccount
-import com.example.emapp.classes.PasswordValidatorCreateAccount
+import com.example.emapp.classes.EmailValidator
+import com.example.emapp.classes.PasswordValidator
 import com.example.emapp.model.CreateAccountModel
 import com.example.emapp.contract.CreateAccountInterface.*
 import com.example.emapp.view.CreateAccount
@@ -15,14 +15,25 @@ class CreateAccountPresenter(_view: CreateAccount): Presenter {
     private var model: Model = CreateAccountModel()
 
 
-    init {
-        view.initView()
-    }
-
     override fun createAccount(edCreateEmail: String, edCreatePassword: String, edConfirmPassword: String){
 
-        val emailValidator = EmailValidatorCreateAccount(view)
-        val passwordValidator = PasswordValidatorCreateAccount(view)
+        if(edCreateEmail.isEmpty()) {
+            view.edCreateEmail.error = view.getString(R.string.fill_field)
+            return
+        }
+
+        if(edCreatePassword.isEmpty()) {
+            view.edCreatePassword.error = view.getString(R.string.fill_field)
+            return
+        }
+
+        if(edConfirmPassword.isEmpty()) {
+            view.edConfirmPassword.error = view.getString(R.string.fill_field)
+            return
+        }
+
+        val emailValidator = EmailValidator()
+        val passwordValidator = PasswordValidator()
         val firebaseAuth: FirebaseAuth = model.getFirebaseAuth()
 
         if((emailValidator.ValidateEmail(edCreateEmail))
@@ -42,29 +53,37 @@ class CreateAccountPresenter(_view: CreateAccount): Presenter {
         }
         else {
             if(!(emailValidator.ValidateEmail(edCreateEmail))){
-                view.edCreateEmail.error = emailValidator.GetError()
+                view.edCreateEmail.error = view.getString(R.string.invalid_email)
             }
             if(!(passwordValidator.ValidatePassword(edCreatePassword))){
-                view.edCreatePassword.error = passwordValidator.GetError()
+                view.edCreatePassword.error = view.getString(R.string.short_password)
             }
         }
     }
 
     override fun validateEmail(edCreateEmail: String) {
 
-        val emailValidator = EmailValidatorCreateAccount(view)
+        if(edCreateEmail.isEmpty()) {
+            view.edCreateEmail.error = view.getString(R.string.fill_field)
+            return
+        }
+        val emailValidator = EmailValidator()
         view.edCreateEmail.error = null
         if(!(emailValidator.ValidateEmail(edCreateEmail))){
-            view.edCreateEmail.error = emailValidator.GetError()
+            view.edCreateEmail.error = view.getString(R.string.invalid_email)
         }
 
     }
 
     override fun validatePassword(edCreatePassword: String) {
-        val passwordValidator = PasswordValidatorCreateAccount(view)
+        if(edCreatePassword.isEmpty()) {
+            view.edCreatePassword.error = view.getString(R.string.fill_field)
+            return
+        }
+        val passwordValidator = PasswordValidator()
         view.edCreatePassword.error = null
         if(!(passwordValidator.ValidatePassword(edCreatePassword))){
-            view.edCreatePassword.error = passwordValidator.GetError()
+            view.edCreatePassword.error = view.getString(R.string.short_password)
         }
 
 

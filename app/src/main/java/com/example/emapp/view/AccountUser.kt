@@ -8,8 +8,13 @@ import com.example.emapp.R
 import com.example.emapp.contract.AccountUserInterface.*
 import com.example.emapp.fragment.*
 import com.example.emapp.presenter.AccountUserPresenter
-import com.example.emapp.presenter.CreateAccountPresenter
-import com.google.android.gms.dynamic.SupportFragmentWrapper
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_account_user.*
 import kotlinx.android.synthetic.main.fragment_map.*
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -17,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_settings.*
 class AccountUser : AppCompatActivity(), View {
 
     private var presenter: AccountUserPresenter? = null
-    private val mapFragment = MapFragment()
+    private val locationFragment = LocationFragment()
     private val settingsFragment = SettingsFragment()
     private val friendsFragment = FriendsFragment()
     private val userFragment = UserFragment()
@@ -26,18 +31,13 @@ class AccountUser : AppCompatActivity(), View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_user)
-        replaceFragment(mapFragment)
-
-
+        replaceFragment(locationFragment)
 
         presenter = AccountUserPresenter(this)
 
-    }
-
-    override fun initView() {
         bottom_navigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.ic_map -> replaceFragment(mapFragment)
+                R.id.ic_map -> replaceFragment(locationFragment)
                 R.id.ic_settings -> replaceFragment(settingsFragment)
                 R.id.ic_user -> replaceFragment(userFragment)
                 R.id.ic_friends -> replaceFragment(friendsFragment)
@@ -46,7 +46,9 @@ class AccountUser : AppCompatActivity(), View {
             true
 
         }
+
     }
+
 
     override fun replaceFragment(fragment: Fragment) {
         if(fragment != null){
@@ -57,6 +59,8 @@ class AccountUser : AppCompatActivity(), View {
     }
 
     override fun logOut() {
+        val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+        firebaseAuth.signOut()
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }

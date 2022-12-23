@@ -6,7 +6,6 @@ import com.google.android.material.textfield.TextInputLayout
 interface ContractInterface {
 
     interface View {
-        fun initView()
         fun signInIntent()
         fun toastWrong()
 
@@ -19,7 +18,7 @@ interface ContractInterface {
     }
 
     interface Model {
-        fun enterDataToBase(edEmail: String, edPassword: String)
+        fun enterDataToBase(edEmail: String)
     }
 
 }

@@ -21,8 +21,8 @@
         />
 
     <item
-        android:title="Friends"
-        android:icon="@drawable/ic_friends"
+        android:title="Bdzhils"
+        android:icon="@drawable/ic_check"
         android:id="@+id/ic_friends"
         />
 

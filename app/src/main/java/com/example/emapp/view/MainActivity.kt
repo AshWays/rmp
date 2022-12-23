@@ -24,9 +24,6 @@ class MainActivity : AppCompatActivity(), View {
         setContentView(R.layout.activity_main)
 
         presenter = MainActivityPresenter(this)
-    }
-
-    override fun initView() {
 
         EnterButton.setOnClickListener {
             presenter?.enterData(edEmail.editText?.text.toString(),edPassword.editText?.text.toString())
@@ -44,11 +41,8 @@ class MainActivity : AppCompatActivity(), View {
             presenter?.validatePassword(edPassword.editText?.text.toString())
 
         }
-
-
-
-
     }
+
 
     override fun signInIntent() {
         startActivity(Intent( this, AccountUser::class.java))

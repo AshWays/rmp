@@ -12,10 +12,9 @@ class MainActivityModel: Model {
 
 
 
-    override fun enterDataToBase(edEmail: String, edPassword: String){
+    override fun enterDataToBase(edEmail: String){
         val id:String = myRef.key.toString()
-        val newUser = User(id,edEmail,edPassword)
+        val newUser = User(id,edEmail)
         myRef.push().setValue(newUser)
-
     }
 }
