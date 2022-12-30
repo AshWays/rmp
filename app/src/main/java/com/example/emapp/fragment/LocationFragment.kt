@@ -33,7 +33,7 @@ private const val ARG_PARAM2 = "param2"
 private lateinit var gMap: GoogleMap
 private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
-class LocationFragment : Fragment(), OnMapReadyCallback, LocationListener {
+class LocationFragment : BaseFragment(), OnMapReadyCallback, LocationListener {
 
     private var param1: String? = null
     private var param2: String? = null
@@ -47,11 +47,6 @@ class LocationFragment : Fragment(), OnMapReadyCallback, LocationListener {
         map_fragment.getMapAsync(this)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,13 +57,13 @@ class LocationFragment : Fragment(), OnMapReadyCallback, LocationListener {
             param2 = it.getString(ARG_PARAM2)
         }
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
         CheckPermissions()
 
         return inflater.inflate(R.layout.fragment_map, container, false)
     }
 
-    private fun CheckPermissions(){
+    override fun CheckPermissions(){
 
         if(ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)!=
             PackageManager.PERMISSION_GRANTED){
@@ -91,22 +86,9 @@ class LocationFragment : Fragment(), OnMapReadyCallback, LocationListener {
             else it.apply {
                 val lat = it.latitude
                 val lng = it.longitude
-                gMap.addMarker(MarkerOptions().position(LatLng(lat,lng)).title("Marker in Sydney"))
-            }
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int,permissions: Array<out String>,grantResults: IntArray) {
-        if (requestCode == 1){
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                if (ContextCompat.checkSelfPermission(requireContext(),Manifest.permission.ACCESS_FINE_LOCATION) ==
-                    PackageManager.PERMISSION_GRANTED){
-                    Toast.makeText(requireActivity(), "Permission granted", Toast.LENGTH_LONG).show()
-                    getLocation()
-                }
-                else {
-                    Toast.makeText(requireActivity(), "Permission denied", Toast.LENGTH_LONG).show()
-                }
+                val place = LatLng(lat, lng)
+                gMap.addMarker(MarkerOptions().position(place).title("you"))
+                gMap.moveCamera(CameraUpdateFactory.newLatLng(place))
             }
         }
     }
@@ -125,11 +107,6 @@ class LocationFragment : Fragment(), OnMapReadyCallback, LocationListener {
     override fun onMapReady(googleMap: GoogleMap) {
         googleMap.let {
             gMap = it
-            gMap = googleMap
-
-            val sydney = LatLng(-34.0, 151.0)
-            gMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-            gMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
 
         }
     }

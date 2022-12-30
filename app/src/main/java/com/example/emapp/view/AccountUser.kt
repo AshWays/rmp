@@ -8,16 +8,9 @@ import com.example.emapp.R
 import com.example.emapp.contract.AccountUserInterface.*
 import com.example.emapp.fragment.*
 import com.example.emapp.presenter.AccountUserPresenter
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_account_user.*
-import kotlinx.android.synthetic.main.fragment_map.*
-import kotlinx.android.synthetic.main.fragment_settings.*
+
 
 class AccountUser : AppCompatActivity(), View {
 

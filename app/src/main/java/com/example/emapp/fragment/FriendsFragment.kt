@@ -14,9 +14,6 @@ import com.example.emapp.R
 import com.example.emapp.classes.User
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.ktx.database
@@ -29,7 +26,7 @@ private const val ARG_PARAM2 = "param2"
 
 private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
-class FriendsFragment : Fragment() {
+class FriendsFragment : BaseFragment() {
 
     private var param1: String? = null
     private var param2: String? = null
@@ -37,10 +34,6 @@ class FriendsFragment : Fragment() {
     private val myRef = database.getReference("Bdzils")
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val firebaseUser: FirebaseUser? = firebaseAuth.currentUser
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,17 +50,6 @@ class FriendsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_friends, container, false)
     }
 
-    private fun CheckPermissions(){
-
-        if(ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)!=
-            PackageManager.PERMISSION_GRANTED){
-
-            ActivityCompat.requestPermissions(requireActivity(),
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),1)
-
-        } else {
-        }
-    }
 
     @SuppressLint("MissingPermission")
     private fun getLocation(){

@@ -15,8 +15,8 @@
     <string name="invalid_email">It\'s not email adress\nAcceptable Emails:@gmail.com, @mail.ru, @yandex.ru</string>
     <string name="short_password">Too short\nMust be from 4 to 12 symbols</string>
     <string name="not_identic_passwords">Not identic passvords</string>
-
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

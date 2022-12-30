@@ -7,10 +7,8 @@ import com.example.emapp.classes.PasswordValidator
 import com.example.emapp.model.MainActivityModel
 import com.example.emapp.contract.ContractInterface.*
 import com.example.emapp.view.MainActivity
-import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.activity_create_account.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivityPresenter(_view: MainActivity): Presenter {
