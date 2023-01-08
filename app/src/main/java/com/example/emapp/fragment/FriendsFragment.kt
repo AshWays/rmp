@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -59,8 +60,8 @@ class FriendsFragment : BaseFragment() {
                 Toast.makeText(requireActivity(), "Can'y get location", Toast.LENGTH_LONG).show()
             }
             else it.apply {
-                val lat = it.latitude
-                val lng = it.longitude
+                val lat = it.latitude.toString()
+                val lng = it.longitude.toString()
                 enterDataToBase(edMessege.text.toString(),edName.text.toString(),lat,lng)
             }
         }
@@ -69,7 +70,7 @@ class FriendsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btnSend.setOnClickListener {
-          getLocation()
+            getLocation()
         }
     }
 
@@ -85,15 +86,19 @@ class FriendsFragment : BaseFragment() {
             }
     }
 
-    fun enterDataToBase(edMessege: String,edName: String, lat: Double, lng: Double){
+    fun enterDataToBase(messege: String,name: String, lat: String, lng: String){
         val user:String = firebaseUser?.email.toString()
-        val newUser = User(user,edName,edMessege,lat.toLong(),lng.toLong())
+        val newUser = User(user,name,messege,lat,lng)
         myRef.push().setValue(newUser).addOnCompleteListener { task ->
             if(task.isSuccessful){
                 Toast.makeText(context,"Yep", Toast.LENGTH_LONG).show()
+                edName.setText("")
+                edMessege.setText("")
             }
             else{
                 Toast.makeText(context,"Oops", Toast.LENGTH_LONG).show()
+                edName.setText("")
+                edMessege.setText("")
             }
         }
     }

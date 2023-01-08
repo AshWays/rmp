@@ -46,7 +46,6 @@ class CreateAccount : AppCompatActivity(), View {
 
     override fun signInIntent() {
         startActivity(Intent( this, AccountUser::class.java))
-        finish()
     }
 
     override fun toastWrong() {

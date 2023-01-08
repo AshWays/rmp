@@ -7,6 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.emapp.R
 import com.example.emapp.view.AccountUser
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_user.*
 
 private const val ARG_PARAM1 = "param1"
@@ -17,17 +21,19 @@ class UserFragment : BaseFragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_user, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        profileUser.text = view.context.getString(R.string.postUser) + " " + FirebaseAuth.getInstance().currentUser?.email.toString()
         SignOutButton.setOnClickListener {
             (activity as AccountUser).logOut()
         }

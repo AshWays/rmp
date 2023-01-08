@@ -1,8 +1,12 @@
 package com.example.emapp.view
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.res.Configuration
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.emapp.R
 import com.example.emapp.contract.AccountUserInterface.*
@@ -10,6 +14,7 @@ import com.example.emapp.fragment.*
 import com.example.emapp.presenter.AccountUserPresenter
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_account_user.*
+
 
 
 class AccountUser : AppCompatActivity(), View {
@@ -25,6 +30,7 @@ class AccountUser : AppCompatActivity(), View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_user)
         replaceFragment(locationFragment)
+        bottom_navigation.selectedItemId = R.id.ic_map
 
         presenter = AccountUserPresenter(this)
 
@@ -56,6 +62,28 @@ class AccountUser : AppCompatActivity(), View {
         firebaseAuth.signOut()
         startActivity(Intent(this, MainActivity::class.java))
         finish()
+    }
+
+    fun replaceNav(){
+        bottom_navigation.selectedItemId = R.id.ic_map
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+
+        val view = this.currentFocus
+        when(event?.actionMasked){
+            MotionEvent.ACTION_DOWN ->{
+                val hideMe = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                hideMe.hideSoftInputFromWindow(view?.windowToken,0)
+            }
+        }
+
+        return true
+    }
+
+    fun refreshActivity(){
+        val refresh = Intent(AccountUser@this, AccountUser::class.java)
+        startActivity(refresh)
     }
 
 

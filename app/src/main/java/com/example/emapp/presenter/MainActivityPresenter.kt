@@ -1,11 +1,14 @@
 package com.example.emapp.presenter
 
 
+import android.content.Intent
 import com.example.emapp.R
 import com.example.emapp.classes.EmailValidator
 import com.example.emapp.classes.PasswordValidator
 import com.example.emapp.model.MainActivityModel
 import com.example.emapp.contract.ContractInterface.*
+import com.example.emapp.view.AccountUser
+import com.example.emapp.view.CreateAccount
 import com.example.emapp.view.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -17,7 +20,6 @@ class MainActivityPresenter(_view: MainActivity): Presenter {
     private var model: Model = MainActivityModel()
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val firebaseUser: FirebaseUser? = firebaseAuth.currentUser
-
 
     override fun enterData(edEmail: String, edPassword: String){
 
@@ -86,6 +88,12 @@ class MainActivityPresenter(_view: MainActivity): Presenter {
             view.edPassword.error = view.getString(R.string.short_password)
         }
 
+    }
+
+    fun checkAuthState(){
+        if(firebaseUser != null){
+            view.startActivity(Intent( view, AccountUser::class.java))
+        }
     }
 
 

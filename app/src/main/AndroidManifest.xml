@@ -24,13 +24,16 @@
             android:value="${GOOGLE_MAPS_API_KEY}" />
         <activity
             android:name=".view.AccountUser"
-            android:exported="true" />
+            android:exported="true"
+            android:configChanges="layoutDirection|locale"/>
         <activity
             android:name=".view.CreateAccount"
-            android:exported="true" />
+            android:exported="true"
+            android:configChanges="layoutDirection|locale"/>
         <activity
             android:name=".view.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:configChanges="layoutDirection|locale">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/nav_menu"
-        android:background="@drawable/button_background"
+        android:background="#EDE200"
         app:itemIconTint="#000000"
         app:itemTextColor="#000000">
 

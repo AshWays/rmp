@@ -3,6 +3,7 @@ package com.example.emapp.view
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.service.notification.Condition
@@ -22,15 +23,14 @@ class MainActivity : AppCompatActivity(), View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         presenter = MainActivityPresenter(this)
+        presenter?.checkAuthState()
 
         EnterButton.setOnClickListener {
             presenter?.enterData(edEmail.editText?.text.toString(),edPassword.editText?.text.toString())
         }
         CreateAccButton.setOnClickListener{
             startActivity(Intent( this, CreateAccount::class.java))
-            finish()
         }
 
         edEmail.editText?.addTextChangedListener {

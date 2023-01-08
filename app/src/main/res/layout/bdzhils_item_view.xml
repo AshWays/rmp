@@ -5,54 +5,41 @@
     android:padding="8dp"
     android:weightSum="1">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:background="@drawable/card_background">
 
         <LinearLayout
-            android:layout_width="309dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/card_background">
 
             <TextView
                 android:id="@+id/cardUser"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
+                android:paddingTop="8dp"
                 android:text="User" />
 
             <TextView
                 android:id="@+id/cardName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
-                android:paddingTop="4dp"
+                android:paddingTop="8dp"
                 android:text="Name" />
 
             <TextView
                 android:id="@+id/cardComment"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
-                android:paddingTop="4dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:text="Comment" />
 
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/btnShow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="8dp"
-            android:paddingRight="18dp"
-            android:text="Show" />
-
-    </LinearLayout>
 
 
 </LinearLayout>

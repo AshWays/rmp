@@ -6,28 +6,28 @@
     <item
         android:id="@+id/ic_settings"
         android:icon="@drawable/ic_settings"
-        android:title="Settings" />
+        android:title="@string/settings" />
 
     <item
-        android:title="News"
+        android:title="@string/news"
         android:icon="@drawable/ic_news"
         android:id="@+id/ic_news"
         />
 
     <item
-        android:title="Map"
+        android:title="@string/map"
         android:icon="@drawable/ic_map"
         android:id="@+id/ic_map"
         />
 
     <item
-        android:title="Bdzhils"
+        android:title="@string/bdzhils"
         android:icon="@drawable/ic_check"
         android:id="@+id/ic_friends"
         />
 
     <item
-        android:title="Account"
+        android:title="@string/account"
         android:icon="@drawable/ic_user"
         android:id="@+id/ic_user"
         />

@@ -7,13 +7,16 @@ import com.example.emapp.model.CreateAccountModel
 import com.example.emapp.contract.CreateAccountInterface.*
 import com.example.emapp.view.CreateAccount
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_create_account.*
 
 class CreateAccountPresenter(_view: CreateAccount): Presenter {
 
     private var view: CreateAccount = _view
     private var model: Model = CreateAccountModel()
-
+    private val emailValidator = EmailValidator()
+    private val passwordValidator = PasswordValidator()
+    private val firebaseAuth: FirebaseAuth = model.getFirebaseAuth()
 
     override fun createAccount(edCreateEmail: String, edCreatePassword: String, edConfirmPassword: String){
 
@@ -31,10 +34,6 @@ class CreateAccountPresenter(_view: CreateAccount): Presenter {
             view.edConfirmPassword.error = view.getString(R.string.fill_field)
             return
         }
-
-        val emailValidator = EmailValidator()
-        val passwordValidator = PasswordValidator()
-        val firebaseAuth: FirebaseAuth = model.getFirebaseAuth()
 
         if((emailValidator.ValidateEmail(edCreateEmail))
             and (passwordValidator.ValidatePassword(edCreatePassword))) {

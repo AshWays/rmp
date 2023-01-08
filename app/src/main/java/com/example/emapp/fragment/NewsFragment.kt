@@ -5,16 +5,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.emapp.R
 import com.example.emapp.classes.BdzhilsAdapter
 import com.example.emapp.classes.User
+import com.example.emapp.view.AccountUser
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_account_user.*
 import kotlinx.android.synthetic.main.fragment_news.*
 
 private const val ARG_PARAM1 = "param1"
@@ -53,13 +57,19 @@ class NewsFragment : BaseFragment() {
         adapter = BdzhilsAdapter()
         newsRecycler.adapter = adapter
         adapter!!.onClickShowItem = {
-            Log.d("TAG", (it.lat).toString() +  (it.lng).toString())
+            (this.requireActivity() as AccountUser).replaceNav()
+            showMarker(it)
         }
 
     }
 
     private fun showMarker(item: User){
-
+        val fragment = LocationFragment()
+        val bundle = Bundle()
+        bundle.putDouble("lat", item.lat.toDouble())
+        bundle.putDouble("lng", item.lng.toDouble())
+        fragment.arguments = bundle
+        fragmentManager?.beginTransaction()?.replace(R.id.fragment_container,fragment)?.commit()
     }
 
     companion object {
@@ -85,8 +95,8 @@ class NewsFragment : BaseFragment() {
                     val com = it.child("comment").value
                     val lat = it.child("lat").value
                     val lng = it.child("lng").value
-                    val item = User(user as String?, name as String?, com as String?,
-                        lat as Long?, lng as Long?)
+                    val item = User(user as String, name as String, com as String,
+                        lat as String, lng as String)
                     adapter?.addItem(item)
                 }
 
