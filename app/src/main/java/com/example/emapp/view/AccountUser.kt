@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2023.
+ * Medzitov Emir, 09.01.2023
+ *
+ */
+
 package com.example.emapp.view
 
 import android.content.Context

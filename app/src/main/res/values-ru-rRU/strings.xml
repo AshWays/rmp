@@ -1,3 +1,9 @@
+<!--
+  ~ Copyright (c) 2023.
+  ~ Medzitov Emir, 09.01.2023
+  ~
+  -->
+
 <resources>
     <string name="app_name">Бджылка</string>
     <string name="email">Электронная почта</string>

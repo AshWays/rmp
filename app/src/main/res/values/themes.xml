@@ -1,3 +1,9 @@
+<!--
+  ~ Copyright (c) 2023.
+  ~ Medzitov Emir, 09.01.2023
+  ~
+  -->
+
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.EmApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
