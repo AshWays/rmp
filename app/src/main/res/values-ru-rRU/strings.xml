@@ -1,0 +1,37 @@
+<!--
+  ~ Copyright (c) 2023.
+  ~ Medzitov Emir, 09.01.2023
+  ~
+  -->
+
+<resources>
+    <string name="app_name">Бджылка</string>
+    <string name="email">Электронная почта</string>
+    <string name="password">Пароль</string>
+    <string name="log_in">Войти</string>
+    <string name="create_account">Создать аккаунт</string>
+    <string name="enter_email">Введите email</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="sign_out">Выйти</string>
+    <string name="fill_field">Заполните поле</string>
+    <string name="user_not_found">Пользователь не наден</string>
+    <string name="server_not_responding">Сервер не отвечает</string>
+    <string name="invalid_email">Неверный адрес электронной почты\nПриемлимые адеса:@gmail.com, @mail.ru, @yandex.ru</string>
+    <string name="short_password">Слишком короткий пароль\nНеобходима длина от 4 до 12 символов</string>
+    <string name="not_identic_passwords">Пароли отличаются</string>
+    <string name="PostName">Название</string>
+    <string name="PostComment">Сообщение</string>
+    <string name="SendPost">Отправить</string>
+    <string name="settings">Настройки</string>
+    <string name="news">Новости</string>
+    <string name="map">Карта</string>
+    <string name="bdzhils">Бджылы</string>
+    <string name="account">Профиль</string>
+    <string name="postUser">Имя:</string>
+    <string name="postName">Название:</string>
+    <string name="postMessege">Комментарий:</string>
+    <string name="language">Язык</string>
+
+</resources>

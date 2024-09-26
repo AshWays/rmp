@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023.
+  ~ Medzitov Emir, 09.01.2023
+  ~
+  -->
+
+<resources>
+    <string name="app_name">Bdzhilka</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log In</string>
+    <string name="create_account">Create Account</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="fill_field">Fill field</string>
+    <string name="user_not_found">User not found</string>
+    <string name="server_not_responding">The server is not responding</string>
+    <string name="invalid_email">It\'s not email adress\nAcceptable Emails:@gmail.com, @mail.ru, @yandex.ru</string>
+    <string name="short_password">Too short\nMust be from 4 to 12 symbols</string>
+    <string name="not_identic_passwords">Not identic passvords</string>
+    <string name="PostName">name</string>
+    <string name="PostComment">messege</string>
+    <string name="SendPost">send</string>
+    <string name="settings">Settings</string>
+    <string name="news">News</string>
+    <string name="map">Map</string>
+    <string name="bdzhils">Bdzhils</string>
+    <string name="account">Profile</string>
+    <string name="postUser">User:</string>
+    <string name="postName">Name:</string>
+    <string name="postMessege">Pose:</string>
+    <string name="language">Language</string>
+</resources>

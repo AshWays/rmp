@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2023.
+  ~ Medzitov Emir, 09.01.2023
+  ~
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item
+        android:id="@+id/ic_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/settings" />
+
+    <item
+        android:title="@string/news"
+        android:icon="@drawable/ic_news"
+        android:id="@+id/ic_news"
+        />
+
+    <item
+        android:title="@string/map"
+        android:icon="@drawable/ic_map"
+        android:id="@+id/ic_map"
+        />
+
+    <item
+        android:title="@string/bdzhils"
+        android:icon="@drawable/ic_check"
+        android:id="@+id/ic_friends"
+        />
+
+    <item
+        android:title="@string/account"
+        android:icon="@drawable/ic_user"
+        android:id="@+id/ic_user"
+        />
+
+</menu>
